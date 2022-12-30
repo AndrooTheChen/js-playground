@@ -1,4 +1,4 @@
-Day 1
+## Day 1
 Starter html file has key mappings already, these keymappings are defined as a standard and can be seen in browser with the tool keycode.info
 
 Looking at this again I need to brush up on HTML because I don’t understand what half this stuff is.
