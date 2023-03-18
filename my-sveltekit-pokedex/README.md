@@ -87,6 +87,18 @@ Apparently we can mix and match rendering styles by adding a script to the +page
 </script>
 ```
 
+We can add the tab header part with `svelte:head` under the `<script>` tags, ex:
+```
+<svelte:head>
+    <title>Svelte Kit Pokedex</title>
+</svelte:head>
+```
+
+## Components
+Create in a different directory from `routes/`, instead do `src/components/`.
+
+We can manually import components one at a time in the `<script>` part of each `.svelte`
+file in routes and call the actual component similar to how we do it in React.
 
 
 [0] https://vitejs.dev/
