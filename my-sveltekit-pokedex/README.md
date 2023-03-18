@@ -100,10 +100,42 @@ Create in a different directory from `routes/`, instead do `src/components/`.
 We can manually import components one at a time in the `<script>` part of each `.svelte`
 file in routes and call the actual component similar to how we do it in React.
 
+## Pokemon API
+How did I not know that this existed?? [5]
+
+## Stores
+Apparently these are simliar to ContextAPI in React and do some stuff that Redux does I 
+think? I'm not really sure I still have no idea what Redux does.
+
+Anywaythese let us share data across the component tree without the need for props drilling
+(which is just passing props down multipole layers because React is nice like that /s).
+
+Here we create a set to store all the Pokemon we retrieve from the Pokemon API with
+```
+import { writable } from 'svelte/store';
+
+export const pokemon = writable([]);
+```
+
+And load all the returned data into the `pokemon` Store.
+
+Initially I tried using TS for this project but switched to JS because seeing the interface
+required to take in a Pokemon object is kinda disgusting.
+
+Also apparently importing the `fetchPokemon` promise and using the `#each` block from the
+Svelte file is not enough to actually call the function. Had to add `fetchPokemon();` write
+under the function definition oin the pokestore.js file.
+
+## Tailwind CSS
+Popular CSS framework. Apparently there's a JIT compiler that's *kinda* new and pretty 
+hype.
+
+Installation instructions here [6].
 
 [0] https://vitejs.dev/
 [1] https://youtu.be/uEJ-Rnm2yOE?t=82
 [2] https://kit.svelte.dev/docs/routing
 [3] https://kit.svelte.dev/docs/routing#layout-layout-server-js
 [4] https://kit.svelte.dev/docs/load
-
+[5] https://pokeapi.co/docs/v2
+[6] https://tailwindcss.com/docs/guides/sveltekit
