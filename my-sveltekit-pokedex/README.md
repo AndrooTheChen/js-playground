@@ -124,13 +124,26 @@ required to take in a Pokemon object is kinda disgusting.
 
 Also apparently importing the `fetchPokemon` promise and using the `#each` block from the
 Svelte file is not enough to actually call the function. Had to add `fetchPokemon();` write
-under the function definition oin the pokestore.js file.
+under the function definition in the pokestore.js file.
 
 ## Tailwind CSS
 Popular CSS framework. Apparently there's a JIT compiler that's *kinda* new and pretty 
 hype.
 
-Installation instructions here [6].
+Installation instructions here [6]. Looks like it was basically just copy/pasting some 
+lines of code in the app and some setup in tailwindconfig.cjs, but the config setup was
+simplified by some `npm` and `npx` commands in the setup.
+
+So the nice thing about it is that you can define classes inline with many options on a
+single line.
+
+```
+<h1 class="text-4xl text-center my-8 uppercase">Svelte Kit Pokedex</h1>
+```
+
+For example here we can adjust text size with `text-4xl` and we can modify margin with 
+`my-8` (this modified y margin, x margin would be `mx-8`). Font sizes have different 
+labels from Tailwind [7].
 
 [0] https://vitejs.dev/
 [1] https://youtu.be/uEJ-Rnm2yOE?t=82
@@ -139,3 +152,4 @@ Installation instructions here [6].
 [4] https://kit.svelte.dev/docs/load
 [5] https://pokeapi.co/docs/v2
 [6] https://tailwindcss.com/docs/guides/sveltekit
+[7] https://tailwindcss.com/docs/font-size
