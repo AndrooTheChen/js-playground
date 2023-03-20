@@ -243,6 +243,8 @@ Look at this stuff, im too lazy to write rn https://kit.svelte.dev/docs/load
 Small thing, but pretty cool amd quick thing to add just by importing and adding to the
 anchor tag field, see `src/components/monCard.svelte` for an example.
 
+Followed along to https://www.youtube.com/watch?v=UU7MgYIbtAk
+
 [0] https://vitejs.dev/
 [1] https://youtu.be/uEJ-Rnm2yOE?t=82
 [2] https://kit.svelte.dev/docs/routing
