@@ -145,6 +145,38 @@ For example here we can adjust text size with `text-4xl` and we can modify margi
 `my-8` (this modified y margin, x margin would be `mx-8`). Font sizes have different 
 labels from Tailwind [7].
 
+## Making the Pokemon cards (no not the TCG but the CSS cards)
+At the top of the file we add an `export let mon` in `<script>` tags to grab the variable
+we initialized from the variable we initialized from `src/routes/+page.svelte`
+
+Some CSS props to make the cards look nice:
+- `p-6` - padding all around of 6
+- `bg-gray-100` - light grey background
+- `text-gray-800` - set text to darker gray
+- `text-center` - centre the text in the container
+- `rounded-md` - round the corners/edges of the container
+- `shadow-sm` - add a small shadow effect
+- `hover:shadow-md ` - make the shadows bigger (medium) when we hover
+- `flex` - display a flex
+- `flex-col` - set flex direction as flex column
+- `items-center` - center the items in the column
+
+This actually works out to make the pokemon cards look quite pretty. To style them in a
+grid nicely though, we need to make a container that wraps around all of the card elements
+and this is done with a grid back in our top-level `src/routes/+page.svelte` file.
+
+In the top-level container add a class `grid` with the following props:
+- `py-4` - vertical padding of 4
+- `gap-4` - have a gap on all 4 sides (top, bottom, left, right)
+- `md:grid-cols-2` - if we have medium or bigger screens, we want 2 side-by-side columns
+- `grid-cols-1` - otherwise we just have a single grid
+
+We can also upsize the pokemon card images themselves by adding the following class
+in the `<img>` tag: `class="h-40 w-40"` -- this adds 40px of padding on hw
+
+Next we also wanna make the text bigger and all caps, we can do that to the header by
+adding this class to the `<h2>` tag: `class="uppercase text-2xl"`
+
 [0] https://vitejs.dev/
 [1] https://youtu.be/uEJ-Rnm2yOE?t=82
 [2] https://kit.svelte.dev/docs/routing
