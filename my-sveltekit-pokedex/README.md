@@ -177,6 +177,62 @@ in the `<img>` tag: `class="h-40 w-40"` -- this adds 40px of padding on hw
 Next we also wanna make the text bigger and all caps, we can do that to the header by
 adding this class to the `<h2>` tag: `class="uppercase text-2xl"`
 
+## Adding Search feature
+We start off with a simple search bar on the home page in `src/+page.svelte` using a
+`<input type="text">` 
+
+CSS used for the searchbox:
+- `rounded-md` - i guess this is even rounder than the other rounded edges on the cards?
+- `w-full` - make this take up the whole width of the page
+- NOT PART OF CLASSES, PART OF INPUT, `placeholder=` - placeholder text in the searchbox
+
+### 2-ways binding
+We can do 2 way binding by simply using `vind:value={variable}` and sticking that in the
+searchbox and apparently that'll handle changes to that `variable` that we initialize
+in the `<script>` tag section. This removes the boilerplate from vanillajs of having to
+create an EventListener for that variable and updating the rendering component. In this
+case we use `searchTerm` as the variable that is 2-way bound. Example:
+
+Svelte:
+```
+<script>
+  let name = 'John';
+</script>
+
+<input bind:value={name}>
+<p>Hello {name}!</p>
+```
+
+VanillaJS:
+```
+<script>
+  let name = 'John';
+  const nameInput = document.getElementById('name-input');
+  const greeting = document.getElementById('greeting');
+
+  nameInput.value = name;
+
+  nameInput.addEventListener('input', event => {
+    name = event.target.value;
+    greeting.innerText = `Hello ${name}!`;
+  });
+</script>
+
+<input type="text" id="name-input">
+<p id="greeting"></p>
+```
+
+### Reacting to changes
+In the `<script>` section we can simply add:
+```
+$: {
+    console.log(variable)
+}
+```
+
+And this will get run each time there is a change to `variable`. holy frick. This is
+apparently similar to a `useEffect()` from React -- not that I really know what that does.
+
 [0] https://vitejs.dev/
 [1] https://youtu.be/uEJ-Rnm2yOE?t=82
 [2] https://kit.svelte.dev/docs/routing

@@ -1,6 +1,8 @@
 <script>
     /**
 	 * @type {{ name: any; }}
+     * We init this variable here to render but also for another area to call this component
+     * and pass in a Pokemon object from the API.
 	 */
      export let mon_card;
 </script>
