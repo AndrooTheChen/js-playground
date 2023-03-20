@@ -233,6 +233,16 @@ $: {
 And this will get run each time there is a change to `variable`. holy frick. This is
 apparently similar to a `useEffect()` from React -- not that I really know what that does.
 
+*NOTE: random thing to remember but stores have a `$` in the front, saying this because
+I keep forgetting.
+
+## Dynamic SSR routing
+Look at this stuff, im too lazy to write rn https://kit.svelte.dev/docs/load
+
+### Fade effect
+Small thing, but pretty cool amd quick thing to add just by importing and adding to the
+anchor tag field, see `src/components/monCard.svelte` for an example.
+
 [0] https://vitejs.dev/
 [1] https://youtu.be/uEJ-Rnm2yOE?t=82
 [2] https://kit.svelte.dev/docs/routing

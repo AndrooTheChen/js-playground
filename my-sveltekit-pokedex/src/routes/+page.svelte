@@ -11,9 +11,13 @@
             // search the Pokemon, make sure we set both to lower case so search is case insensitive.
             filteredPokemon = $pokemon.filter(mon => mon.name.toLowerCase().includes(searchTerm.toLowerCase()));
         } else {
-            // copies over all pokemon returned from pokestore into filteredPokemon. This is
+            // Copies over all pokemon returned from pokestore into filteredPokemon. This is
             // because we don't want to just show zero results while someone is in the middle of
             // typing a query -- we still want to show them all until this query is matched.
+            // 
+            // We use the rest operator here `...` to pass in $pokemon as a list of n arguments. 
+            // This is just a shorthand way to say we're copying everything in the array over to 
+            // this list that we are then assigning to `filteredPokemon`.
             filteredPokemon = [... $pokemon]
         }
     }
