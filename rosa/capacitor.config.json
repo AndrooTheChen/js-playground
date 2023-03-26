@@ -1,0 +1,9 @@
+{
+		"webDir":"build",
+		"appId":"rosa.ionic.io",
+		"appName":"rosa",
+		"_server": {
+		  "url": "http://192.168.1.14:5173/",
+		  "cleartext": true
+		}
+	}
