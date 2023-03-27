@@ -1,5 +1,17 @@
 <script>
 	import IonPage from "ionic-svelte/components/IonPage.svelte";
+    import 'ionic-svelte/components/all';
+    // import IonContent from "ionic-svelte";
+    // import IonHeader from "ionic-svelte";
+    // import IonToolbar from "ionic-svelte";
+    // import IonTitle from "ionic-svelte";
+    // import IonList from "ionic-svelte";
+    // import IonItem from "ionic-svelte";
+    // import IonLabel from "ionic-svelte";
+    // import IonInput from "ionic-svelte";
+    // import IonButton from "ionic-svelte";
+    
+    // import { IonContent } from "ionic-svelte/components/IonPage.svelte";
 
     let newMessage = '';
     let messages = [
@@ -28,31 +40,56 @@
     }
 </script>
 
-<svelte:head>
-    <title>GPT interface</title>
-</svelte:head>
-
 <IonPage>
-    <h1 class="text-4xl text-center my-8 uppercase">GPT interface</h1>
+    <ion-header>
+      <ion-toolbar color="primary">
+        <ion-title>Chat App</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+        <div class="flex flex-col h-full overflow-y-auto">
+            <div class="overflow-y-auto flex flex-col-reverse" style="height: calc(100vh - 100px);">
+                <ion-list>
+                {#each messages as message}
+                <ion-item lines="none" class={message.role === 'user' ? 'ion-justify-content-end' : 'ion-justify-content-start'}>
+                    <ion-label class="ion-text-wrap">{message.content}</ion-label>
+                </ion-item>
+                {/each}
+                </ion-list>
+            </div>
+            <ion_footer class="fixed bottom-0 w-full h-12">
+                <form on:submit|preventDefault={chat} class="ion-padding">
+                    <ion-item>
+                      <ion-input type="text" placeholder="Type your message" value={newMessage} on:input={(e) => newMessage = e.target.value}></ion-input>
+                      <ion-button type="submit" fill="solid" slot="end">Send</ion-button>
+                    </ion-item>
+                  </form>
+              </ion_footer>
+        </div>
+    </ion-content>
 
-    <div>
-        <h2>Chat</h2>
-        <ul>
-          {#each messages as message}
-            <li>
-              {message.role === 'system' ? 'System: ' : 'You: '}
-              {message.content}
-            </li>
-          {/each}
-        </ul>
-      
-        <form on:submit|preventDefault="{chat}">
-          <label>
-            Message:
-            <input type="text" bind:value="{newMessage}" />
-          </label>
-          <button type="submit">Send</button>
+
+    <!-- this should technically be better but breaks it and adds a second outer scrollbar, very jank.  -->
+    <!-- <ion-content>
+    <div class="h-full flex flex-col">
+        <div class="overflow-y-auto flex-grow flex flex-col-reverse">
+        <ion-list>
+            {#each messages as message}
+            <ion-item lines="none" class={message.role === 'user' ? 'ion-justify-content-end' : 'ion-justify-content-start'}>
+            <ion-label class="ion-text-wrap">{message.content}</ion-label>
+            </ion-item>
+            {/each}
+        </ion-list>
+        </div>
+        <ion_footer class="h-12">
+        <form on:submit|preventDefault={chat} class="ion-padding">
+            <ion-item>
+            <ion-input type="text" placeholder="Type your message" value={newMessage} on:input={(e) => newMessage = e.target.value}></ion-input>
+            <ion-button type="submit" fill="solid" slot="end">Send</ion-button>
+            </ion-item>
         </form>
-      </div>
-</IonPage>
-
+        </ion_footer>
+    </div>
+    </ion-content> -->
+  </IonPage>  
+  

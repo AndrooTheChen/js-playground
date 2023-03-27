@@ -10,6 +10,9 @@
 	/* Theme variables */
 	import '../theme/variables.css';
 
+	/* Use Tailwind CSS */
+	import "../app.css";
+
 	/*
 		This part - import 'ionic-svelte/components/all'; -  loads all components at once.
 
