@@ -1,17 +1,18 @@
 <script>
 	import IonPage from "ionic-svelte/components/IonPage.svelte";
-    import 'ionic-svelte/components/all';
-    // import IonContent from "ionic-svelte";
-    // import IonHeader from "ionic-svelte";
-    // import IonToolbar from "ionic-svelte";
-    // import IonTitle from "ionic-svelte";
-    // import IonList from "ionic-svelte";
-    // import IonItem from "ionic-svelte";
-    // import IonLabel from "ionic-svelte";
-    // import IonInput from "ionic-svelte";
-    // import IonButton from "ionic-svelte";
-    
-    // import { IonContent } from "ionic-svelte/components/IonPage.svelte";
+
+    import 'ionic-svelte/components/ion-split-pane';
+    import 'ionic-svelte/components/ion-menu';
+    import 'ionic-svelte/components/ion-header';
+    import 'ionic-svelte/components/ion-toolbar';
+    import 'ionic-svelte/components/ion-title';
+    import 'ionic-svelte/components/ion-content';
+    import 'ionic-svelte/components/ion-list';
+    import 'ionic-svelte/components/ion-item';
+    import 'ionic-svelte/components/ion-label';
+    import 'ionic-svelte/components/ion-input';
+    import 'ionic-svelte/components/ion-button';
+    import 'ionic-svelte/components/ion-menu-button';
 
     let newMessage = '';
     let messages = [
@@ -41,12 +42,6 @@
 </script>
 
 <IonPage>
-    <!-- <ion-header>
-      <ion-toolbar color="primary">
-        <ion-title>Chat App</ion-title>
-      </ion-toolbar>
-    </ion-header> -->
-
     <ion-split-pane content-id="main">
         <ion-menu content-id="main">
           <ion-header>
