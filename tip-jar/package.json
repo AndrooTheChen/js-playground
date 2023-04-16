@@ -1,0 +1,37 @@
+{
+  "name": "tip-jar",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "vite dev",
+    "build": "vite build",
+    "preview": "vite preview",
+    "hardhat": "hardhat --config hardhat.config.cjs",
+    "hardhat:compile": "npm run hardhat compile",
+    "hardhat:run": "npm run hardhat run scripts/run.js",
+    "hardhat:deploy": "npm run hardhat run scripts/deploy.js --network localhost",
+    "hardhat:deploy:rinkeby": "npm run hardhat run scripts/deploy.js -- network rinkeby",
+    "hardhat:test": "npm run hardhat test"
+  },
+  "devDependencies": {
+    "@sveltejs/adapter-auto": "^2.0.0",
+    "@sveltejs/adapter-vercel": "^1.0.0-next.88",
+    "@sveltejs/kit": "^1.5.0",
+    "autoprefixer": "^10.4.7",
+    "postcss": "^8.4.14",
+    "postcss-load-config": "^4.0.1",
+    "svelte": "^3.54.0",
+    "svelte-preprocess": "^4.10.7",
+    "tailwindcss": "^3.1.5",
+    "vite": "^4.2.0"
+  },
+  "type": "module",
+  "dependencies": {
+    "@nomiclabs/hardhat-ethers": "^2.2.3",
+    "@nomiclabs/hardhat-waffle": "^2.0.5",
+    "chai": "^4.3.7",
+    "ethereum-waffle": "^4.0.10",
+    "ethers": "^5.7.2",
+    "hardhat": "^2.14.0"
+  }
+}
