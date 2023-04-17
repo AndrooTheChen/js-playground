@@ -31,7 +31,25 @@ msg.data (bytes): complete calldata
 msg.gas (uint): remaining gas - deprecated in version 0.4.21 and to be replaced by gasleft()
 msg.sig (bytes4): first four bytes of the calldata (i.e. function identifier)
 ```
+at this point we have a smart contract defined in solidity in `src/contracts/TipJar.sol`. contracts are 
+necessary to interact with the actual Ethereum blockchain.
 
+users typically make transactions with a themselves identified (as a sender) and a receiver, both of which
+represented with an address. they are sent using gas which is measured in wei.
+
+JSON-RPC is used for communications between blockchain nodes and client apps. examples of these are
+wallets or dApps. sometimes we want to interact with a smart contract on the ethereum network, and so
+we can send a JSON-RPC request to send a transaction fo the Ethereum network. so ig JSON-RPC is just
+the communication protocol.
+
+and so the ethereum blockchain (which is just a ledge distributed among all nodes in the network) just kinda 
+lives on nodes i guess. the whole system is kept consistent despite being distributed by the whole proof-of-
+whatever they're doing these days i dont really care. 
+
+nodes in the ethereum network is just a computer that participates in validation + propagation of transactions
+in blocks. miners validate transactions and create new blocks. full nodes store a complete copy of the
+blockchain and relay transactions and propagate new blocks across the network. also, each node is represented
+with a unique address.
 
 [0] https://kit.svelte.dev/docs/adapters
 [1] https://eips.ethereum.org/EIPS/eip-1193
