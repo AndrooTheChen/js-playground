@@ -14,6 +14,8 @@
     import 'ionic-svelte/components/ion-button';
     import 'ionic-svelte/components/ion-menu-button';
 
+    import { onMount } from 'svelte';
+
     let newMessage = '';
     let messages = [
         { role: 'system', content: 'You must respond with Gen-Z slang. Act like you are young hip and cool.'}
@@ -35,10 +37,23 @@
 
         // GPT response
         const chatGPTMessage = await res.json();
-        console.log(chatGPTMessage);
+        console.log(`[DEBUG] GPT response: ${chatGPTMessage}`);
 
         messages = [...messages, chatGPTMessage];
     }
+
+    // use onMount to make a POST request with the initial message before the component is rendered
+    // onMount(async () => {
+    //     const res = await fetch('/chat', {
+    //         method: 'POST',
+    //         body: JSON.stringify({ messages })
+    //     });
+
+    //     const chatGPTMessage = await res.json();
+    //     console.log(chatGPTMessage);
+
+    //     messages = [...messages, chatGPTMessage];
+    // });
 </script>
 
 <IonPage>
