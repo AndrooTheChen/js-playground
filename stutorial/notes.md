@@ -65,3 +65,15 @@ https://fireship.io/courses/sveltekit/basics-navigation/
 Sometimes in `load()` functions can be expensive from repetitive calls that provide no new updates, and 
 so we can also set headers with a `setHeaders` object in the `load()` function that allows us to set
 cache control headers (e.g. `cache-control: max-age=60`.)
+
+## Firebase Stuff
+There's the client (Javascript) SDK and also the Admin SDK.
+
+The client SDK allows us to fetch client-side and implements Firestore security rules, but does NOT
+let us do server-side auth. This means if we want to fetch data for an auth'd user and render on the
+server we can't use this -- yet this shouldn't be too bad because it is primarily just used on the
+client side anyway.
+
+Admin SDK lets us do cookie authentication, but can't use client-side data nor can it do realtime data.
+We put all the stuff pertaining to this in `src/lib/server/admin.ts`. This tells Svelte to only run this
+code in the server.
