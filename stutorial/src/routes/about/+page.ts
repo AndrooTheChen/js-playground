@@ -9,7 +9,7 @@ import type { PageLoad } from './$types';
 // don't need to be interactive since we load less Javascript.
 // export const csr = false;
 
-export const load = (async () => {
+export const load = (async ({ setHeaders }) => {
     return {
         title: 'About',
         content: 'This is the about page.',
