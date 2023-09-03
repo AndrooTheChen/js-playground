@@ -70,3 +70,21 @@ have a method that selects the "primary" step based on the current URL path.
 `$page.route.id?` uses the `?` operator to handle the case where the value is null. The 
 match then simply checks to make sure that the route path has either `username` or `photo`
 in it.
+
+We can define transitions in Svelte using the transition module. We create a transition in
+`/src/lib/components/AnimatedRoute.svelte` where we import the `fly` transition with
+```
+import { fly } from "svelte/transitions";
+```
+
+We create a `<div>` that uses the transition that makes the component "fly" in from x=-100
+(meaning it comes from the left side of the screen) that lasts for 500ms.
+
+We can also create an "out" animation for when the `<div>` is destroyed, but we won't be
+using that here.
+
+Svelte also has a mechanism called `key` that rebuilds all children encapsulated by it when
+Svelte detects a change in the store. It's especially useful for applying animations.
+
+Here we use the `key` to detect whenever there is a change in the URL which will then cause
+the animation we defined here to run.
