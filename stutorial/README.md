@@ -88,3 +88,24 @@ Svelte detects a change in the store. It's especially useful for applying animat
 
 Here we use the `key` to detect whenever there is a change in the URL which will then cause
 the animation we defined here to run.
+
+I was having an issue also where the steps component at the top would have the top layer
+of pixels cut off. I resolved this by adding some padding to the component by simply adding
+`p-1` to add 1 px of padding to the `steps` class. Apparently I can do this directionally
+or also just with margins.
+
+```
+Tailwind also provides utilities for adding padding to specific sides of an element, such as pt-2 for top padding, pb-2 for bottom padding, pl-2 for left padding, and pr-2 for right padding
+```
+
+```
+Tailwind also provides utilities for adding margin to specific sides of an element, such as mt-2 for top margin, mb-2 for bottom margin, ml-2 for left margin, and mr-2 for right margin daisyui.com.
+```
+
+### Authentication
+Our logic currently lives in src/routes/login/+page.svelte, but technically we can probably
+break this out into its own src/lib/component/... to handle more complex login logic.
+
+We import some of the Firebase SDK stuffs given to us and imported in src/lib/firebase.ts
+and add a button that class a sign on method that returns a JWT on that button's on-click
+event.

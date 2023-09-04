@@ -21,7 +21,7 @@ const firebaseConfig = {
 
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
-export const analytics = getAnalytics(app);
+// export const analytics = getAnalytics(app); // prob need to enable analytics in firebase console if i want this
 export const db = getFirestore();
 export const auth = getAuth();
 export const storage = getStorage();
