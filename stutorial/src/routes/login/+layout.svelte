@@ -1,6 +1,8 @@
 <script lang="ts">
     import { page } from "$app/stores";
     import AnimatedRoute from "$lib/components/AnimatedRoute.svelte";
+    // import { Auth } from "firebase-admin/auth";
+    import AuthCheck from "$lib/components/AuthCheck.svelte";
 </script>
 
 <nav class="flex justify-center my-6">
@@ -26,6 +28,9 @@
     <main class="card w-4/6 bg-neutral text-neutral-content mx-auto">
         <div class="card-body items-center text-center">
             <slot />
+            <AuthCheck>
+                <h2>logged in content</h2>
+            </AuthCheck>
         </div>
     </main>
 </AnimatedRoute>
