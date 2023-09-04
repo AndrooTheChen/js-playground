@@ -109,3 +109,29 @@ break this out into its own src/lib/component/... to handle more complex login l
 We import some of the Firebase SDK stuffs given to us and imported in src/lib/firebase.ts
 and add a button that class a sign on method that returns a JWT on that button's on-click
 event.
+
+The actual auth stuff that issues the JWT is in src/lib/firebase.ts. Here we use Svelte 
+stores to let Svelte know who is currently logged in or not. This is a breakdown of what
+goes on from GPT:
+
+```
+- It imports the writable function from the svelte/store module.
+- It uses the writable function to create a writable store.
+- The initial value of the store is set to auth?.currentUser ?? null. This is a conditional expression that checks if auth.currentUser is truthy. If it is, the value of the store will be auth.currentUser. Otherwise, the value will be null.
+- The second argument of the writable function is a callback function that is executed when a subscriber subscribes to the store. Inside this callback function, it calls the onAuthStateChanged function with auth and a callback function as arguments.
+- The onAuthStateChanged function is likely from a Firebase authentication library. It is used to listen for changes in the authentication state. When the authentication state changes, the callback function is called with the user object.
+- Inside the callback function of onAuthStateChanged, it calls the set function provided by the writable store and passes the user object as the new value of the store.
+- Finally, the function returns an object with a subscribe property that references the subscribe method of the writable store.
+
+In summary, this userStore function creates a writable store that is initialized with the current user from the auth object. It listens for changes in the authentication state and updates the store value accordingly. Other parts of the application can subscribe to this store to get the latest user information codechips.me.
+```
+
+We also utilize another `unsubscribe` void function to only subscribe to the Auth state
+only when it is used.
+
+At the beginning we also check that `getAuth()` from Firestore is not `null` and also
+that we are in a browser by getting the condition from `globalThis.window`. `globalThis` is
+a global object that lets us view global scope regardless of what env the our Javascript
+is running in. Checking the `window` property ensures that the code runs in a browser, 
+otherwise if running in Node.js from the server-side that object would not evaluate to 
+true.

@@ -2,8 +2,10 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getFirestore } from "firebase/firestore";
-import { getAuth } from "firebase/auth";
+import { getAuth, onAuthStateChanged, type User } from "firebase/auth";
 import { getStorage } from "firebase/storage";
+import {writable} from 'svelte/store'
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -25,3 +27,49 @@ export const app = initializeApp(firebaseConfig);
 export const db = getFirestore();
 export const auth = getAuth();
 export const storage = getStorage();
+
+/*
+ * @returns a store with the current firebase user.
+ */
+function userStore() {
+  // this is just a function that is used to unsubscribe from the onAuthStateChanged listener.
+  // it doesn't take any args and doesn't return anything. 
+  let unsubscribe: () => void;
+
+
+  if (!auth || !globalThis.window) {
+    console.warn('Auth is not initialized or not in browser');
+    const { subscribe } = writable<User | null>(null);
+    return {
+      subscribe,
+    }
+  }
+
+  // This creates a writable store in Svelte. The first argument is the default value which in our case
+  // here is the currently loged in user (if any, otherwise null).
+  // The second argument of the writable function is a callback function that is executed when a 
+  // subscriber subscribes to the store. Inside this callback function, it calls the onAuthStateChanged 
+  // function with auth and a callback function as arguments.
+  const { subscribe } = writable(auth?.currentUser ?? null, (set) => {
+    unsubscribe = onAuthStateChanged(auth, (user) => {
+      set(user);
+    });
+
+    // unsubscribe from the Auth state when the store is no longer in use.
+    return () => unsubscribe();
+  });
+
+  return {
+    subscribe,
+  }
+}
+
+// Let this store be used by anywhere else in our application
+export const user = userStore();
+
+// NOT USED
+// this is just an example of how we can quickly prototypoe logging in without good safeguards.
+// const currentUser = writable<User | null>(null);
+// onAuthStateChanged(auth, (user) => {
+//   currentUser.set(user);
+// });
