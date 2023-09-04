@@ -28,9 +28,9 @@
     <main class="card w-4/6 bg-neutral text-neutral-content mx-auto">
         <div class="card-body items-center text-center">
             <slot />
-            <AuthCheck>
+            <!-- <AuthCheck>
                 <h2>logged in content</h2>
-            </AuthCheck>
+            </AuthCheck> -->
         </div>
     </main>
 </AnimatedRoute>

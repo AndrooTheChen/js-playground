@@ -135,3 +135,27 @@ a global object that lets us view global scope regardless of what env the our Ja
 is running in. Checking the `window` property ensures that the code runs in a browser, 
 otherwise if running in Node.js from the server-side that object would not evaluate to 
 true.
+
+Reactive declarations allow us to write "reactive" code in our HTML and JS. This can be
+useful for things like form validation. They are usually created with a `$: <stuff>`
+
+
+### Simple Data Fetching
+simple example:
+```
+export const userData = writable<any>(null);
+
+user.subscribe((user) => {
+
+  if (user) {
+    const docRef = doc(db, `users/${user.uid}`);
+    onSnapshot(docRef, (snapshot) => {
+      userData.set(snapshot.data());
+    });
+  } 
+});
+```
+
+When subscribing to a store, it only triggers a document read once in Firestore, so it
+usually is good to define these in your top-level +layout.svelte files as we do in
+src/routes/+layout.svelte if we use the data globally.
