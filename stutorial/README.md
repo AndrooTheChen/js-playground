@@ -159,3 +159,44 @@ user.subscribe((user) => {
 When subscribing to a store, it only triggers a document read once in Firestore, so it
 usually is good to define these in your top-level +layout.svelte files as we do in
 src/routes/+layout.svelte if we use the data globally.
+
+### Uploading files
+Files get uploaded and stored in Firebase Storage. The file location will then be tied to
+the user ID. When we go to the `users/` collection in our Firestore DB each entry has a
+`photoURL` field.
+
+By default the photo is drawn from our Google account photo. This is because when we 
+first created this entry we set the `photoURL` to be `$user.photoURL`. This user object
+was returned to us from the JWT that grants us access.
+
+Was getting this error when trying to upload photos:
+```
+Error: "Firebase Storage: User does not have permission to access..."
+```
+
+Fixed this by going in the Firebase Storage Rules tab and changing one line:
+```
+      allow read, write: if false;
+```
+with
+```
+      allow read, write
+```
+
+Ultimately made some better Cloud rules to specify users can only upload to their
+own profiles:
+```
+rules_version = '2';
+
+// Craft rules based on data in your Firestore database
+// allow write: if firestore.get(
+//    /databases/(default)/documents/users/$(request.auth.uid)).data.isAdmin;
+service firebase.storage {
+  match /b/{bucket}/o {
+    match /users/{userId}/{allPaths=**} {
+      allow read;
+      allow write: if userId == request.auth.uid;
+    }
+  }
+}
+```

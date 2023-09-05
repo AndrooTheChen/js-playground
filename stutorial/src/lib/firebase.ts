@@ -75,6 +75,7 @@ export const user = userStore();
 // });
 
 /**
+ * Use this store to easily fetch data from any Firebase document from the client.
  * @param  {string} path document path or reference
  * @returns a store with realtime updates on document data
  */
