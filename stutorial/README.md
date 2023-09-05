@@ -200,3 +200,15 @@ service firebase.storage {
   }
 }
 ```
+
+To render the component tag we can use `<svelte:head>` tags to use data we retrieve from
+the backend in the HTML headers. Remember the +page.ts can run on either client or 
+server side.
+
+Encountered a bug where all the CSS styles like text and colour stuff in my `h1` tag 
+weren't working. Turns out it was because the HTML defined at the bottom of the +page.svelte
+file was NOT CORRECLTY TABBED. JEEZ. that was so painful to debug. Though I guess one 
+other takeaway was looking at the element and inspecting the style and seeing that instead
+of being referenced from `<style>` or something it said "user agent stylesheet" which
+usually means it's like the system/browser default -- no valid CSS style was found and so
+something is wrong with my CSS.
